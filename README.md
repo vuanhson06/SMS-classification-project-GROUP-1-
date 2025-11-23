@@ -322,9 +322,11 @@ python app.py
 ### 7.6 Quick Start Summary
 
 - **Optional: create virtual environment**
+```bash
 python -m venv venv
 source venv/bin/activate       # Linux / MacOS
 venv\Scripts\activate          # Windows
+```
 
 - **Install dependencies**
 ```bash
