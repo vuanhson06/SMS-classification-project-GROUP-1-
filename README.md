@@ -48,10 +48,10 @@ The project is divided into four main stages:
 - Save the trained vectorizer using `joblib` as `artifacts/vectorizer.pkl`.
 
 ### 4.3 Model Training
-- Models used: **Support Vector Machine (SVM)** and optionally *Multinomial Naive Bayes or Logistic Regression*.
-- Train the model on the training set and evaluate it on the testing set.
-- Evaluation metrics include: Accuracy, Precision, Recall, and F1-score.
-- Save the trained model as artifacts/spam_model.pkl.
+- **Models used:** SVM, Multinomial Naive Bayes (MNB), Logistic Regression (LR).
+- Train all models on the training set and evaluate on the testing set using Accuracy, Precision, Recall, and F1-score.
+- Select the best model based on weighted F1-score. **Logistic Regression (LR)** is chosen.
+- Save the best model as `artifacts/spam_model.pkl`.
 
 ### 4.4 Web Application Deployment
 - The web interface is now implemented using **HTML + CSS + JavaScript**.
@@ -61,36 +61,47 @@ The project is divided into four main stages:
   
 ### 4.5 Backend
 - **Framework & Language:** Python + FlaskAPI.
-- **API Endpoint:** `/predict` receives JSON data with the `"message"` field containing the SMS to classify.
+- **API Endpoints:**
+  - `/predict` receives JSON data with the `"message"` field containing a single SMS to classify.
+  - `/batch_predict` receives JSON data with the `"messages"` field containing a list of SMS messages for batch classification.
 - **Model Loading:** Load the trained model from `artifacts/spam_model.pkl` and the vectorizer from `artifacts/vectorizer.pkl`.
 - **Preprocessing:** On receiving a new message, the backend:
   - Converts all characters to lowercase
   - Removes non-alphabetic characters and extra spaces
   - Tokenizes and removes stopwords
-- **Vectorization:** Uses `ManualVectorizer` to convert the message into a Bag-of-Words vector.
+- **Vectorization:** Uses `ManualVectorizer` to convert the message(s) into Bag-of-Words vector(s).
 - **Prediction Logic:**
-  - Calls `model.predict()` to determine the label (`Spam`/`Ham`)
-  - Calls `model.predict_proba()` to calculate the **confidence score**
-  - If the label is `Spam`, the system highlights the keywords that likely triggered the spam classification.
-- **Response:** Returns a JSON object containing the predicted label, confidence score, and keyword list if the message is spam.
+  - For single message: 
+    - Calls `model.predict()` to determine the label (`Spam`/`Ham`)
+    - Calls `model.predict_proba()` to calculate the **confidence score**
+    - If the label is `Spam`, highlights keywords that likely triggered the spam classification
+  - For batch messages: 
+    - Applies the same preprocessing, vectorization, and prediction steps to each message
+    - Returns predictions and confidence scores for all messages
+- **Response:** Returns a JSON object containing the predicted label, confidence score, and keyword list if the message is spam. For batch prediction, returns a list of results for each message.
+
 
 ### 4.6 Frontend
 - **Technologies:** HTML, CSS, JavaScript.
-- **Layout:** Simple and user-friendly interface:
-  - Input box for users to enter SMS messages
-  - “Predict” button to send requests to the backend
-  - Display area for predicted label and confidence score
-  - Highlight keywords if the message is classified as spam
+- **Layout:** Simple and user-friendly interface with two tabs:
+  - **Single Prediction Tab:**
+    - Input box for users to enter an SMS message
+    - “Analyze Message” button to send a single prediction request to the backend
+    - Display area for predicted label and confidence score
+    - Highlight keywords if the message is classified as spam
+  - **Batch Upload Tab:**
+    - File upload or text area to enter multiple SMS messages
+    - “Process Batch” button to send batch prediction requests to the backend
+    - Display area showing predicted labels and confidence scores for all messages
 - **Behavior (JavaScript):**
-  - Listens for click events on the Predict button
-  - Sends a POST request to `/predict` with JSON data
-  - Receives JSON response and updates the UI according to the label and confidence score
+  - Listens for click events on the “Analyze Message” and “Process Batch” buttons
+  - Sends POST requests to `/predict` (single) or `/batch_predict` (batch) with JSON data
+  - Receives JSON response and updates the UI according to labels and confidence scores
   - Highlights spam keywords directly in the interface
 - **Styling (CSS):**
   - Uses colors to differentiate spam (red) and ham (green)
   - Responsive layout for desktop and mobile
   - Result boxes with clear borders, padding, and margin for readability
----
 
 ## 5. Model Evaluation Results
 
