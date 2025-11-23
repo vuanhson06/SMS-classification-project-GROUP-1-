@@ -319,40 +319,40 @@ python app.py
 
 ### 7.6 Quick Start Summary
 
-# Optional: create virtual environment
+- **Optional: create virtual environment**
 python -m venv venv
 source venv/bin/activate       # Linux / MacOS
 venv\Scripts\activate          # Windows
 
-# Install dependencies
+- **Install dependencies**
 pip install -r requirements.txt
 
-# Optional: retrain model
+- **Optional: retrain model**
 python train.py
 
-# Run web app
+- **Run web app**
 python app.py
 
 ### 7.7 Run Demo
 
-# 1. Start the Flask server
+1. Start the Flask server
 python app.py
 
-# 2. Open your web browser and go to:
+2. Open your web browser and go to:
 http://127.0.0.1:5000/
 
-# 3. Enter an SMS message in the input box
+3. Enter an SMS message in the input box
 
-# 4. Click "Classify" to get the result:
-#    - Label: Spam or Ham
-#    - Confidence score (e.g., 98%)
-#    - Highlighted keywords if predicted as Spam
+4. Click "Classify" to get the result:
+    - Label: Spam or Ham
+    - Confidence score (e.g., 98%)
+    - Highlighted keywords if predicted as Spam
 
-# 5. Example messages:
-#    - "Congratulations! You have won $1000"  → Spam
-#    - "Hey, are we meeting tomorrow?"        → Ham
+5. Example messages:
+    - "Congratulations! You have won $1000"  → Spam
+    - "Hey, are we meeting tomorrow?"        → Ham
 
-# 6. To stop the demo, go back to your terminal and press:
+6. To stop the demo, go back to your terminal and press:
 Ctrl + C
 
 
