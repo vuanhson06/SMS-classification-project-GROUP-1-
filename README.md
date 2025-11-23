@@ -306,7 +306,7 @@ python train.py
 ```
 ### 7.4 Run the Web Application
 
-Start the Flask web application
+- Start the Flask web application:
 python app.py
 
 ### 7.5 Libraries Used
