@@ -14,7 +14,7 @@ The project is conducted as part of the course **Programming for Data Science** 
 | Member | Student ID | Main Responsibilities | Assigned Files |
 |---------|-------------|------------------------|----------------|
 | **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, report.pdf |
-| **Vũ Anh Sơn** |  | Backend – Implemented prediction logic, model loading, API handling. | app.py |
+| **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | app.py |
 | **Tạ Ngọc Ánh** |  | Frontend – Developed the **HTML + CSS** UI. | templates/, static/ |
 | **Nguyễn Thị Dương** |  | Built the ManualVectorizer and contributed to frontend + dataset processing. | vectorizer.py |
 | **Trần Nguyên Khôi** |  | Implemented tokenization, helped with raw data reading. | preprocess.py |
@@ -307,7 +307,9 @@ python train.py
 ### 7.4 Run the Web Application
 
 - Start the Flask web application:
+```bash
 python app.py
+```
 
 ### 7.5 Libraries Used
 
@@ -325,34 +327,43 @@ source venv/bin/activate       # Linux / MacOS
 venv\Scripts\activate          # Windows
 
 - **Install dependencies**
+```bash
 pip install -r requirements.txt
+```
 
 - **Optional: retrain model**
+```bash
 python train.py
+```
 
 - **Run web app**
+```bash
 python app.py
+```
 
 ### 7.7 Run Demo
 
 1. Start the Flask server
+```bash
 python app.py
-
+```
 2. Open your web browser and go to:
+```bash
 http://127.0.0.1:5000/
+```
 
-3. Enter an SMS message in the input box
+4. Enter an SMS message in the input box
 
-4. Click "Classify" to get the result:
+5. Click "Classify" to get the result:
     - Label: Spam or Ham
     - Confidence score (e.g., 98%)
     - Highlighted keywords if predicted as Spam
 
-5. Example messages:
+6. Example messages:
     - "Congratulations! You have won $1000"  → Spam
     - "Hey, are we meeting tomorrow?"        → Ham
 
-6. To stop the demo, go back to your terminal and press:
+7. To stop the demo, go back to your terminal and press:
 Ctrl + C
 
 
