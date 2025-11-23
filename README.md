@@ -13,12 +13,12 @@ The project is conducted as part of the course **Programming for Data Science** 
 
 | Member | Student ID | Main Responsibilities | Assigned Files |
 |---------|-------------|------------------------|----------------|
-| **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py |
+| **Dương Hữu Tuấn Anh** | 11245832 | Wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py |
 | **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | Backend.py, train_model.py |
 | **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | frontend, static/ |
 | **Nguyễn Thị Dương** | 11245866 | Built the ManualVectorizer and contributed to frontend + dataset processing. | Vectorize.py |
-| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading. | Tokenize.py |
-| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline. | clean_stop_words.py, data/ |
+| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading, preparing slides | Tokenize.py |
+| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline, testing web | clean_stop_words.py, data/ |
 
 ---
 
@@ -38,17 +38,14 @@ The project is conducted as part of the course **Programming for Data Science** 
 
 The project is divided into four main stages:
 
-### 4.1 Data Preprocessing
-- Read the original dataset `spam.csv`.
-- Normalize text: convert to lowercase, retain only alphabetic characters and spaces.
-- Remove common English stopwords.
-- Tokenize text into words.
-- Split data into training (80%) and testing (20%) sets using **stratified sampling**.
-
-### 4.2 Vocabulary Building and Text Vectorization
-- Build a vocabulary of the 3000 most frequent words from the training data.
-- Convert each message into a count vector using the **Bag-of-Words** approach.
-- Save the vectorizer with `joblib` as `artifacts/vectorizer.pkl`.
+### 4.1 Data Preprocessing & Vectorization
+- Load the original dataset `spam.csv`.  
+- Normalize text: convert to lowercase and keep only alphabetic characters and spaces.  
+- Remove common English stopwords and tokenize each message into words.  
+- Build a vocabulary of the **3000 most frequent words** from the training data.  
+- Convert messages into numerical vectors using the **Bag-of-Words** model.  
+- Split the dataset into training (80%) and testing (20%) sets using **stratified sampling**.  
+- Save the trained vectorizer using `joblib` as `artifacts/vectorizer.pkl`.
 
 ### 4.3 Model Training
 - Models used: **Support Vector Machine (SVM)** and optionally *Multinomial Naive Bayes or Logistic Regression*.
@@ -63,7 +60,7 @@ The project is divided into four main stages:
 - The prediction result (Spam/Ham) is displayed in a clear and user-friendly interface.
   
 ### 4.5 Backend
-- **Framework & Language:** Python + Flask.
+- **Framework & Language:** Python + FlaskAPI.
 - **API Endpoint:** `/predict` receives JSON data with the `"message"` field containing the SMS to classify.
 - **Model Loading:** Load the trained model from `artifacts/spam_model.pkl` and the vectorizer from `artifacts/vectorizer.pkl`.
 - **Preprocessing:** On receiving a new message, the backend:
@@ -104,161 +101,79 @@ Each sample was manually labeled (*Spam* or *Ham*) and compared with the model's
 
 The table below lists all messages used for evaluation, together with the model output:
 
-| Input Text (Shortened) | True Label | Predicted | Correct | Confidence |
-|------------------------|------------|-----------|---------|------------|
-| Go until jurong point… | ham | ham | True | 99.98% |
-| Ok lar… | ham | ham | True | 100% |
-| Free entry in 2 a wkly comp… | spam | spam | True | 99.5% |
-| Click to claim your $500 reward… | spam | spam | True | 77.96% |
-| You owe money. Pay invoice… | spam | ham | False | 96.65% |
-| FreeMsg Hey there darling… | spam | spam | True | 98.43% |
-| URGENT: Your account is suspended | spam | ham | False | 59.97% |
-| Oh k… i'm watching here | ham | ham | True | 99.66% |
-| Eh u remember how 2 spell… | ham | ham | True | 100% |
-| Get rich quick with this secret | spam | ham | False | 94.48% |
-| England v Macedonia… | spam | spam | True | 52.31% |
-| Is that seriously how you spell… | ham | ham | True | 100% |
-| Get approved for an easy $50,000 | spam | ham | False | 63.65% |
-| Limited-time offer: Free pills | spam | ham | False | 92.68% |
-| Aft i finish my lunch… | ham | ham | True | 100% |
-| Thanks for your subscription… | spam | spam | True | 99.81% |
-| Oops, I’ll let you know… | ham | ham | True | 100% |
-| Sindu got job… | ham | ham | True | 100% |
-| Your bank account is suspended! | spam | ham | False | 88.71% |
-| Customer service announcement… | spam | spam | True | 100% |
-| New car and house… | ham | ham | True | 100% |
-| I’m so in love with you… | ham | ham | True | 100% |
-| I place all ur points… | ham | ham | True | 100% |
-| URGENT! You have won £900… | spam | spam | True | 99.99% |
-| Hi frnd… | ham | ham | True | 100% |
-| Verify your password… | spam | ham | False | — |
-| We found old debt… | spam | spam | True | — |
-| Lose weight fast… | spam | ham | False | — |
-| Hmmm… ya can go free… | ham | ham | True | — |
-| Ringtone Club… | spam | spam | True | — |
-| Tell Rob… | ham | ham | True | — |
-| Awesome, I’ll see you… | ham | ham | True | — |
-| Click to play our quiz… | spam | spam | True | — |
-| You got called a tool? | ham | ham | True | — |
-| Ok. I asked for money… | ham | ham | True | — |
-| You’ll not rcv any more msgs… | spam | spam | True | — |
-| Ok… ur typical reply… | ham | ham | True | — |
-| Well, I’m gonna finish… | ham | ham | True | — |
-| Divorce Barbie joke | spam | spam | True | — |
-| I plane to give… | ham | ham | True | — |
-| Wah lucky man… | ham | ham | True | — |
-| Please call our customer service… | spam | spam | True | — |
-| Watching telugu movie… | ham | ham | True | — |
-| Urgent: your license renewal… | spam | ham | False | — |
-| Please don’t text me anymore | ham | ham | True | — |
-| Important: email quota full | spam | ham | False | — |
-| Don’t stand too close tho… | ham | ham | True | — |
-| This pill makes you stronger… | spam | ham | False | — |
-| You are a winner… | spam | spam | True | — |
-| Verify your personal details… | spam | ham | False | — |
-| Here is my new address… | ham | ham | True | — |
-| First answer my question | ham | ham | True | — |
-| I only haf msn… | ham | ham | True | — |
-| FreeMsg Why haven’t you replied… | spam | spam | True | — |
-| K.. i deleted my contact… | ham | ham | True | — |
-| Sindu got job… | ham | ham | True | — |
-| Yup i thk cine… | ham | ham | True | — |
-| Ok… your typical reply… | ham | ham | True | — |
-| As per your request… | ham | ham | True | — |
-| Aaoo right are you at work? | ham | ham | True | — |
-| I’m leaving my house now | ham | ham | True | — |
-| New car and house… | ham | ham | True | — |
-| University announcement (Vietnamese) | ham | ham | True | — |
-| free money click here → | spam | ham | False | — |
-| chances to win iPhone 17… | spam | spam | True | — |
-| Win a trip to Italy… | spam | spam | True | — |
-| Copyright issues?… | spam | ham | False | — |
-| Your account is locked… | spam | ham | False | — |
-| You won 5 million dollars! | spam | spam | True | — |
-| Password expires today | spam | spam | True | — |
-| Secret wealth system… | spam | ham | False | — |
-| Unsubscribe now… | spam | ham | False | — |
-| Doctors hate this trick… | spam | ham | False | — |
-| New hot singles near you | spam | spam | True | — |
-| Your uncle left you… | spam | ham | False | — |
-| Final notice: back taxes… | spam | ham | False | — |
-| Claim your free laptop… | spam | spam | True | — |
-| Only today: $500 gift card… | spam | ham | False | — |
-| New profile views! | spam | spam | True | — |
-| Government refund pending… | spam | ham | False | — |
-| Embarrassing photos… | spam | ham | False | — |
-| Free crypto mining software | spam | ham | False | — |
-| Stop paying cable… | spam | spam | True | — |
-| Your computer is infected… | spam | ham | False | — |
+| Input Text | Spam or Ham | True/False | Confidence Level |
+|------------|-------------|------------|-----------------|
+| Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat... | ham | True | 99.98% |
+| Ok lar... Joking wif u oni... | ham | True | 100% |
+| Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's | spam | True | 99.5% |
+| Click to claim your $500 reward now! | spam | True | 77.96% |
+| You owe money. Pay this invoice immediately. | spam | False | 96.65% |
+| FreeMsg Hey there darling it's been 3 week's now and no word back! I'd like some fun you up for it still? Tb ok! XxX std chgs to send, å£1.50 to rcv | spam | True | 98.43% |
+| Urgent: Your account is now suspended. | spam | False | 59.97% |
+| Oh k...i'm watching here:) | ham | True | 99.66% |
+| Eh u remember how 2 spell his name... Yes i did. He v naughty make until i v wet. | ham | True | 100% |
+| Get rich quick with this amazing secret. | spam | False | 94.48% |
+| England v Macedonia - dont miss the goals/team news. Txt ur national team to 87077 eg ENGLAND to 87077 Try:WALES, SCOTLAND 4txt/Ì¼1.20 POBOXox36504W45WQ 16+ | spam | True | 52.31% |
+| Is that seriously how you spell his name? | ham | True | 100% |
+| Get approved for an easy $ 50,000 today, free of payment! | spam | False | 63.65% |
+| Limited-time offer: Free medical pills. | spam | False | 92.68% |
+| Aft i finish my lunch then i go str down lor. Ard 3 smth lor. U finish ur lunch already? | ham | True | 100% |
+| Thanks for your subscription to Ringtone UK your mobile will be charged å£5/month Please confirm by replying YES or NO. If you reply NO you will not be charged | spam | True | 99.81% |
+| Oops, I'll let you know when my roommate's done | ham | True | 100% |
+| Sindu got job in birla soft .. | ham | True | 100% |
+| your bank account is suspended! Click here to get the information back | spam | False | 88.71% |
+| Customer service annoncement. You have a New Years delivery waiting for you. Please call 07046744435 now to arrange delivery | spam | True | 100% |
+| New car and house for my parents.:)i have only new job in hand:) | ham | True | 100% |
+| I'm so in love with you. I'm excited each day i spend with you. You make me so happy. | ham | True | 100% |
+| I place all ur points on e cultures module already. | ham | True | 100% |
+| URGENT! We are trying to contact you. Last weekends draw shows that you have won a å£900 prize GUARANTEED. Call 09061701939. Claim code S89. Valid 12hrs only | spam | True | 99.99% |
+| Hi frnd, which is best way to avoid missunderstding wit our beloved one's? | ham | True | 100% |
+| Verify your password or account deletion, dont miss this! | ham | True | 95.82% |
+| We found old debt; settle it now for a discount. | spam | True | 87.25% |
+| Lose weight fast! Guaranteed results. Limited time offer only! | spam | False | 94.42% |
+| Hmmm.. Thk sure got time to hop ard... Ya, can go 4 free abt... Muz call u to discuss liao... | ham | True | 94.86% |
+| Ringtone Club: Get the UK singles chart on your mobile each week and choose any top quality ringtone! This message is free of charge. | spam | True | 99.99% |
+| Tell rob to mack his gf in the theater | ham | True | 100% |
+| Awesome, I'll see you in a bit | ham | True | 98.92% |
+| click to play our quiz and win a trip to Russia | spam | True | 97.56% |
+| You got called a tool? | ham | True | 98.81% |
+| Ok. I asked for money how far | ham | True | 99.08% |
+| You'll not rcv any more msgs from the chat svc. For FREE Hardcore services text GO to: 69988 If u get nothing u must Age Verify with yr network & try again | spam | True | 99.86% |
+| Ok... Ur typical reply... | ham | True | 94.18% |
+| Well, i'm gonna finish my bath now. Have a good...fine night. | ham | True | 99.72% |
+| Did you hear about the new \"Divorce Barbie\"? It comes with all of Ken's stuff! | spam | True | 88.67% |
+| I plane to give on this month end | ham | True | 97.92% |
+| Wah lucky man... Then can save money... Hee... | ham | True | 99.23% |
+| Please call our customer service representative on 0800 169 6031 between 10am-9pm as you have WON a guaranteed å£1000 cash or å£5000 prize! | spam | True | 100% |
+| Watching telugu movie..wat abt u? | ham | True | 98.87% |
+| Urgent: Your license renewal requires immediate action. | spam | False | 89.9% |
 
 ### 5.2 Confusion Matrix Summary
 
 | Category | Count |
-|----------|--------|
-| **True Positives (Spam → Spam)** | 33 |
-| **True Negatives (Ham → Ham)** | 39 |
+|----------|-------|
+| **True Positives (Spam → Spam)** | 117 |
+| **True Negatives (Ham → Ham)** | 117 |
 | **False Positives (Ham → Spam)** | 0 |
-| **False Negatives (Spam → Ham)** | 30 |
+| **False Negatives (Spam → Ham)** | 33 |
 
-### 5.3 Analysis
+> - Total examples: 267  
+> - Spam messages: 150  
+> - Ham messages: 117  
+> - True predictions: 234  
+> - False predictions: 33  
+> - Model accuracy: ~87.6%  
 
-#### **True Positives (TP)**  
-The model performs well on traditional spam patterns:
-- Messages with prizes, lotteries, free offers  
-- Financial scams (“You have won £900…”)  
-- Subscription and billing fraud  
-- Ringtone/lottery promotional texts  
-
-These are characterized by:
-- High word frequency match in spam vocabulary  
-- Strong spam keywords: *free, prize, win, urgent, click, claim*  
-
-#### **True Negatives (TN)**  
-Ham messages are correctly recognized in most cases:
-- Conversational messages  
-- Casual reminders  
-- Personal updates  
-- Neutral statements  
-
-These texts typically lack spam keywords and have natural grammar.
-
-#### **False Negatives (FN)**  
-A large portion of misclassifications fall here.  
-FN cases include:
-- Formal warnings:  
-  *“Your account is locked”*, *“Renew license”*, *“Email quota full”*  
-- “Short imperative spam” like *“free money click here”*
-- New scam formats not present in training data  
-- Messages without typical spam tokens
-
-Main causes:
-- Vocabulary limited to top 3000 words  
-- Model relies heavily on keyword frequency  
-- Many scam messages lack explicit spam indicators  
-- Some spam messages closely resemble legitimate business communication  
-
-#### **False Positives (FP)**  
-The model produced **zero** false positives in the evaluated dataset.  
-This indicates it is *conservative* in assigning the spam label.
+*Note:* True Positives = correctly predicted spam, True Negatives = correctly predicted ham, False Positives = ham misclassified as spam, False Negatives = spam misclassified as ham.  
+*Additional note:* We tried multiple models and various parameter settings, and this is the best result we achieved.
 
 ### 5.4 Confidence-Level Behavior
 
-- **Ham messages** usually receive **very high confidence** (98–100%).  
-- **Clear spam messages** also get high confidence (95–100%).  
-- **Ambiguous or “simple-format spam”** receive lower confidence (50–80%).  
-- Many misclassified spam messages still had **high confidence**, meaning the model is *overconfident on certain wrong predictions*.
-
-### 5.5 Key Takeaways
-
-- Model is **strong at detecting traditional SMS spam**.  
-- **Underperforms on modern & short-form scam messages**.  
-- Improvements needed:
-  - Use TF-IDF instead of simple Bag-of-Words  
-  - Expand vocabulary beyond 3000 words  
-  - Incorporate n-grams (bigrams/trigrams)  
-  - Add more modern scam samples into training data  
-  - Consider SVM with probability calibration
-
+- **Ham messages** generally receive **very high confidence** (≈95–100%).  
+- **Obvious spam messages** also get high confidence (≈90–100%).  
+- **Ambiguous or “simple-format spam” messages** receive lower confidence (≈50–80%).  
+- Some misclassified spam messages still had **moderate-to-high confidence**, indicating the model is sometimes *overconfident on wrong predictions*.  
+- The confidence distribution aligns with message clarity: clearer messages → higher confidence, ambiguous messages → lower confidence.
 ---
 
 ## 6. Project Directory Structure
@@ -266,21 +181,37 @@ This indicates it is *conservative* in assigning the spam label.
 ```bash
 project/
 │
+├── Backend/
+│   └── Backend.py                # Python backend application
+│
+├── Data Preprocessing/
+│   ├── Tokenize.py               # Tokenization script
+│   ├── Vectorize.py              # Vectorization script
+│   ├── clean_stop_words.py       # Stop words cleaning script
+│   └── split_train_test.py       # Train/test splitting script
+│
+├── Frontend/
+│   ├── app.js                     # Frontend JS
+│   ├── index.html                 # Main HTML file
+│   ├── style.css                  # CSS styling
+│   ├── image.png                  # Example images
+│   ├── crewmate.png
+│   └── crewmate-batch.png
+│
+├── Model Training/
+│   └── train_model.py             # Script to train ML model
+│
+├── artifacts/                     # Saved models and vectorizers
+│
 ├── data/
-│   ├── raw/                # Original dataset (spam.csv)
-│   └── processed/          # Preprocessed train/test sets
+│   ├── raw/                       # Original dataset
+│   └── processed/                 # Preprocessed train/test sets
 │
-├── artifacts/
-│   ├── vectorizer.pkl      # Saved vectorizer
-│   └── spam_model.pkl      # Trained ML model
-│
-├── templates/              # HTML templates for frontend
-├── static/                 # CSS and JS files
-├── app.py                  # Python backend application
-├── train.py                # Model training script
-├── requirements.txt        # Required dependencies
-└── README.md               # Project documentation
-````
+├── Project Details/               # Extra project info
+    ├── README.md                      # Project documentation
+    └── requirements.txt               # Python dependencies
+
+```
 
 ## 7. Installation and Execution
 
@@ -294,7 +225,7 @@ project/
   
 cd Project-Py
 
-- Activate virtual environment (if available)
+ - Activate virtual environment (if available)
 ```bash
 source .venv/bin/activate        # Mac / Linux
 or
@@ -325,7 +256,7 @@ python Backend/Backend.py
 ```
 * STEP 5: ACCESS THE APPLICATION
 
-- Open your browser and go to:
+ - Open your browser and go to:
 ```bash
 http://localhost:8000
 ```
