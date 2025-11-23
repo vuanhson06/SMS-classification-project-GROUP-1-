@@ -291,41 +291,44 @@ project/
 
 ### 7.2 Install Dependencies
 * STEP 1: SET UP ENVIRONMENT
-- 
+  
 cd Project-Py
 
 - Activate virtual environment (if available)
+```bash
 source .venv/bin/activate        # Mac / Linux
 or
 .venv\Scripts\activate           # Windows
 
 - Install required dependencies
 pip install -r "Data Preprocessing/requirements.txt"
-
+````
 
 * STEP 2: DATA PREPROCESSING
 (Run the files in this exact order)
-
+```bash
 python "Data Preprocessing/Tokenize.py"
 python "Data Preprocessing/clean_stop_words.py"
 python "Data Preprocessing/Vectorize.py"
 python "Data Preprocessing/split_train_test.py"
-
-
+````
 
 * STEP 3: TRAIN THE MODEL
 
+```bash
 python "Model Training/train_model.py"
+```
 
 * STEP 4: RUN THE APPLICATION
-
+```bash
 python Backend/Backend.py
-
+```
 * STEP 5: ACCESS THE APPLICATION
 
 - Open your browser and go to:
+```bash
 http://localhost:8000
-
+```
 ### 7.5 Libraries Used
 
 * **pandas** – Data manipulation and CSV processing
