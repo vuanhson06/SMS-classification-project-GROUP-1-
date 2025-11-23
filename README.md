@@ -13,12 +13,12 @@ The project is conducted as part of the course **Programming for Data Science** 
 
 | Member | Student ID | Main Responsibilities | Assigned Files |
 |---------|-------------|------------------------|----------------|
-| **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, report.pdf |
-| **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | app.py |
-| **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | templates/, static/ |
-| **Nguyễn Thị Dương** | 11245866 | Built the ManualVectorizer and contributed to frontend + dataset processing. | vectorizer.py |
-| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading. | preprocess.py |
-| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline. | preprocess.py, data/ |
+| **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py |
+| **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | Backend.py, train_model.py |
+| **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | frontend, static/ |
+| **Nguyễn Thị Dương** | 11245866 | Built the ManualVectorizer and contributed to frontend + dataset processing. | Vectorize.py |
+| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading. | Tokenize.py |
+| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline. | clean_stop_words.py, data/ |
 
 ---
 
@@ -290,26 +290,41 @@ project/
 * pip or conda for dependency installation
 
 ### 7.2 Install Dependencies
+* STEP 1: SET UP ENVIRONMENT
+- 
+cd Project-Py
 
-Run the following command in your terminal:
+- Activate virtual environment (if available)
+source .venv/bin/activate        # Mac / Linux
+or
+.venv\Scripts\activate           # Windows
 
-```bash
-pip install -r requirements.txt
-```
+- Install required dependencies
+pip install -r "Data Preprocessing/requirements.txt"
 
-### 7.3 Train Model (Optional)
 
-If you wish to retrain the model from scratch using the raw dataset:
+* STEP 2: DATA PREPROCESSING
+(Run the files in this exact order)
 
-```bash
-python train.py
-```
-### 7.4 Run the Web Application
+python "Data Preprocessing/Tokenize.py"
+python "Data Preprocessing/clean_stop_words.py"
+python "Data Preprocessing/Vectorize.py"
+python "Data Preprocessing/split_train_test.py"
 
-- Start the Flask web application:
-```bash
-python app.py
-```
+
+
+* STEP 3: TRAIN THE MODEL
+
+python "Model Training/train_model.py"
+
+* STEP 4: RUN THE APPLICATION
+
+python Backend/Backend.py
+
+* STEP 5: ACCESS THE APPLICATION
+
+- Open your browser and go to:
+http://localhost:8000
 
 ### 7.5 Libraries Used
 
@@ -318,55 +333,3 @@ python app.py
 * **scikit-learn** – Machine learning algorithms and metrics
 * **joblib** – Saving and loading models/vectorizers
 * **wordcloud**, **matplotlib** – Keyword visualization and plots
-
-### 7.6 Quick Start Summary
-
-- **Optional: create virtual environment**
-```bash
-python -m venv venv
-source venv/bin/activate       # Linux / MacOS
-venv\Scripts\activate          # Windows
-```
-
-- **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
-
-- **Optional: retrain model**
-```bash
-python train.py
-```
-
-- **Run web app**
-```bash
-python app.py
-```
-
-### 7.7 Run Demo
-
-1. Start the Flask server
-```bash
-python app.py
-```
-2. Open your web browser and go to:
-```bash
-http://127.0.0.1:5000/
-```
-
-4. Enter an SMS message in the input box
-
-5. Click "Classify" to get the result:
-    - Label: Spam or Ham
-    - Confidence score (e.g., 98%)
-    - Highlighted keywords if predicted as Spam
-
-6. Example messages:
-    - "Congratulations! You have won $1000"  → Spam
-    - "Hey, are we meeting tomorrow?"        → Ham
-
-7. To stop the demo, go back to your terminal and press:
-Ctrl + C
-
-
-
