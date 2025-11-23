@@ -1,4 +1,3 @@
-/* THAY THẾ TOÀN BỘ FILE STYLE.CSS BẰNG NỘI DUNG NÀY */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +15,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header */
 header {
     display: flex;
     justify-content: space-between;
@@ -59,7 +57,6 @@ nav a:hover, nav a.active {
     color: #ffd700;
 }
 
-/* Main Content */
 .main-content {
     display: flex;
     align-items: center;
@@ -75,7 +72,6 @@ nav a:hover, nav a.active {
     position: relative;
 }
 
-/* Among Us Character */
 .crewmate-img {
     width: 200px;
     margin-bottom: -80px;
@@ -84,7 +80,6 @@ nav a:hover, nav a.active {
     position: relative;
 }
 
-/* Form Container */
 .form-container {
     background: rgba(45, 45, 45, 0.95);
     border-radius: 50px;
@@ -106,7 +101,6 @@ nav a:hover, nav a.active {
     display: block;
 }
 
-/* Input Styles */
 .input-container {
     width: 100%;
     max-width: 500px;
@@ -138,7 +132,6 @@ form input[type="text"]:focus {
     border-color: #4ade80;
 }
 
-/* File Upload */
 .file-upload-container {
     margin: 25px 0;
 }
@@ -174,7 +167,6 @@ form input[type="text"]:focus {
     font-weight: 500;
 }
 
-/* Submit Button */
 .submit-btn {
     background: linear-gradient(135deg, #a02a2a, #c53030);
     color: white;
@@ -204,7 +196,6 @@ form input[type="text"]:focus {
     transform: none;
 }
 
-/* Result Container */
 .result-container {
     display: none;
     background: rgba(255, 255, 255, 0.1);
@@ -232,7 +223,6 @@ form input[type="text"]:focus {
     font-size: 1.1em;
 }
 
-/* Result Types */
 .loading {
     color: #ffd700;
     font-weight: 600;
@@ -273,7 +263,6 @@ form input[type="text"]:focus {
     font-weight: 600;
 }
 
-/* Spam Words */
 .spam-words {
     margin-top: 15px;
     padding: 12px;
@@ -293,7 +282,6 @@ form input[type="text"]:focus {
     display: inline-block;
 }
 
-/* Batch Results */
 .batch-result {
     margin-top: 25px;
     background: rgba(255, 255, 255, 0.1);
@@ -304,21 +292,21 @@ form input[type="text"]:focus {
 
 .batch-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* SỬA 3 THÀNH 4 */
-    gap: 15px; /* Giảm gap để vừa 4 ô */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
     margin-bottom: 30px;
 }
 
 .stat-card {
     background: rgba(255, 255, 255, 0.08);
-    padding: 20px; /* Giảm padding để vừa */
+    padding: 20px; 
     border-radius: 12px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .stat-value {
-    font-size: 2rem; /* Giảm size để vừa */
+    font-size: 2rem; 
     font-weight: bold;
     margin-bottom: 5px;
 }
@@ -341,7 +329,6 @@ form input[type="text"]:focus {
     opacity: 0.8;
 }
 
-/* PROJECT INTRODUCTION STYLES */
 .project-intro {
     margin-top: 50px;
     padding: 40px;
@@ -506,7 +493,6 @@ form input[type="text"]:focus {
     opacity: 0.9;
 }
 
-/* Dashboard Styles */
 .stats-dashboard {
     padding: 30px;
     max-width: 1200px;
@@ -532,7 +518,6 @@ form input[type="text"]:focus {
     opacity: 0.8;
 }
 
-/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -622,7 +607,6 @@ form input[type="text"]:focus {
     border: 1px solid rgba(234, 179, 8, 0.4);
 }
 
-/* Dashboard Charts */
 .dashboard-charts-wide {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -727,7 +711,6 @@ form input[type="text"]:focus {
     font-size: 0.85em;
 }
 
-/* Spam Info Tabs */
 .spam-info-tabs {
     margin-top: 50px;
     background: rgba(255, 255, 255, 0.08);
@@ -785,7 +768,6 @@ form input[type="text"]:focus {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Keywords List */
 .keywords-list-enhanced {
     display: flex;
     flex-direction: column;
@@ -840,7 +822,6 @@ form input[type="text"]:focus {
     line-height: 1.4;
 }
 
-/* Tips List */
 .tips-list-simple {
     display: flex;
     flex-direction: column;
@@ -880,7 +861,6 @@ form input[type="text"]:focus {
     flex: 1;
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     .stats-dashboard {
         padding: 20px;
@@ -1035,67 +1015,55 @@ form input[type="text"]:focus {
         padding: 20px;
     }
 }
-/* THÊM VÀO CUỐI FILE CSS HIỆN TẠI */
-
-/* Mở rộng viền ngang cho tất cả các container chính */
 .form-container {
     width: 95% !important;
-    max-width: 950px !important; /* Tăng max-width để mở rộng ngang */
+    max-width: 950px !important; 
     margin: 0 auto !important;
 }
 
-/* Mở rộng viền ngang cho batch results */
 .batch-results-container {
     width: 100% !important;
     max-width: none !important;
     margin: 25px 0 !important;
 }
 
-/* Mở rộng tables container */
 .tables-container {
     width: 100% !important;
-    gap: 40px !important; /* Tăng khoảng cách giữa 2 bảng */
+    gap: 40px !important; 
 }
 
-/* Mở rộng từng bảng spam và ham */
 .table-section {
     width: 100% !important;
-    min-height: 450px !important; /* Tăng chiều cao tối thiểu */
+    min-height: 450px !important;
 }
 
-/* Mở rộng bảng bên trong */
 .batch-results-table {
     width: 100% !important;
-    table-layout: fixed !important; /* Đảm bảo bảng chiếm full width */
+    table-layout: fixed !important; 
 }
 
-/* Mở rộng các cột trong bảng */
 .batch-results-table th,
 .batch-results-table td {
-    padding: 18px 25px !important; /* Tăng padding để mở rộng */
+    padding: 18px 25px !important; 
     word-wrap: break-word !important;
 }
 
-/* Đảm bảo content chiếm full width */
 .batch-results-table th:first-child,
 .batch-results-table td:first-child {
     width: 100% !important;
 }
 
-/* Mở rộng stats container */
 .batch-stats {
     max-width: none !important;
     gap: 30px !important;
     margin-bottom: 50px !important;
 }
 
-/* Mở rộng các stat card */
 .stat-card {
     padding: 30px 25px !important;
     min-height: 120px !important;
 }
 
-/* Responsive cho mobile */
 @media (max-width: 768px) {
     .form-container {
         width: 98% !important;
@@ -1111,7 +1079,6 @@ form input[type="text"]:focus {
         min-height: 350px !important;
     }
 }
-/* Result Types */
 .loading {
     color: #ffd700;
     font-weight: 600;
@@ -1142,7 +1109,6 @@ form input[type="text"]:focus {
     font-weight: 600;
 }
 
-/* Confidence colors */
 .confidence-high {
     background: rgba(239, 68, 68, 0.2);
     color: #ef4444;
@@ -1161,7 +1127,6 @@ form input[type="text"]:focus {
     border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-/* Ham confidence colors */
 .confidence-high-ham {
     background: rgba(34, 197, 94, 0.2);
     color: #22c55e;
@@ -1179,7 +1144,6 @@ form input[type="text"]:focus {
     color: #84cc16;
     border: 1px solid rgba(132, 204, 22, 0.3);
 }
-/* Enhanced batch results styling */
 .keyword-tag-small {
     background: rgba(239, 68, 68, 0.2);
     color: #fca5a5;
@@ -1201,7 +1165,6 @@ form input[type="text"]:focus {
     text-align: center;
 }
 
-/* Improved confidence display for ham messages */
 .confidence-high-ham {
     background: rgba(34, 197, 94, 0.2);
     color: #22c55e;
@@ -1220,7 +1183,6 @@ form input[type="text"]:focus {
     border: 1px solid rgba(34, 197, 94, 0.15);
 }
 
-/* Better table responsiveness */
 @media (max-width: 768px) {
     .batch-results-table {
         font-size: 0.8rem;
