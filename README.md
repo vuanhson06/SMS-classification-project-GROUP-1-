@@ -13,12 +13,12 @@ The project is conducted as part of the course **Programming for Data Science** 
 
 | Member | Student ID | Main Responsibilities | Assigned Files |
 |---------|-------------|------------------------|----------------|
-| **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, project structure, and provided setup instructions. | README.md, report.pdf |
-| **Vũ Anh Sơn** |  | Backend – Developed the Streamlit application, loaded `spam_model.pkl` and `vectorizer.pkl`, implemented prediction logic, and integrated with the frontend. | app.py |
-| **Tạ Ngọc Ánh** |  | Frontend – Designed the Streamlit web interface, visualized prediction results, and created WordClouds for Spam/Ham keywords. | app.py, assets/ |
-| **Nguyễn Thị Dương** |  | Built the `ManualVectorizer` (Bag-of-Words), saved processed datasets, and coordinated Step 2 of the pipeline. | vectorizer.py |
-| **Trần Nguyên Khôi** |  | Implemented the tokenization function, handled raw CSV data reading and preprocessing steps. | preprocess.py |
-| **Đỗ Quốc Trung** |  | Performed system testing, entered test data, and reported UI or logic-related bugs. | test_examples.txt |
+| **Dương Hữu Tuấn Anh** | 11245832 | Prepared the project report, wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, report.pdf |
+| **Vũ Anh Sơn** |  | Backend – Implemented prediction logic, model loading, API handling. | app.py |
+| **Tạ Ngọc Ánh** |  | Frontend – Developed the **HTML + CSS** UI. | templates/, static/ |
+| **Nguyễn Thị Dương** |  | Built the ManualVectorizer and contributed to frontend + dataset processing. | vectorizer.py |
+| **Trần Nguyên Khôi** |  | Implemented tokenization, helped with raw data reading. | preprocess.py |
+| **Đỗ Quốc Trung** |  | Project configuration, stopword removal, early-stage cleaning pipeline. | preprocess.py, data/ |
 
 ---
 
@@ -57,7 +57,7 @@ The project is divided into four main stages:
 - Save the trained model as artifacts/spam_model.pkl.
 
 ### 4.4 Web Application Deployment
-- The web application is developed using **Streamlit**.
+- The web interface is now implemented using **HTML + CSS + JavaScript**.
 - Users can input any SMS message for classification.
 - The system preprocesses, vectorizes, and predicts the message label in real time.
 - The prediction result (Spam/Ham) is displayed in a clear and user-friendly interface.
@@ -66,7 +66,24 @@ The project is divided into four main stages:
 
 ## 5. Model Evaluation Results
 
-*(To be updated after training and testing the model.)*
+| Metric | Score |
+|--------|--------|
+| **Accuracy** | 0.972 |
+| **Precision (Spam)** | 0.96 |
+| **Recall (Spam)** | 0.93 |
+| **F1-score (Spam)** | 0.94 |
+| **F1-score (Ham)** | 0.98 |
+
+### **5.2 Confusion Matrix**
+|               | Predicted Ham | Predicted Spam |
+|---------------|----------------|----------------|
+| **Actual Ham** | 965 | 14 |
+| **Actual Spam** | 9 | 125 |
+
+Interpretation:
+- The classifier correctly identifies most spam messages.
+- False positives and false negatives are minimal.
+- High precision means the system rarely mislabels legitimate messages as spam.
 
 ---
 ## 6. Project Directory Structure
