@@ -61,10 +61,39 @@ The project is divided into four main stages:
 - Users can input any SMS message for classification.
 - The system preprocesses, vectorizes, and predicts the message label in real time.
 - The prediction result (Spam/Ham) is displayed in a clear and user-friendly interface.
+  
+### 4.5 Backend
+- **Framework & Language:** Python + Flask.
+- **API Endpoint:** `/predict` receives JSON data with the `"message"` field containing the SMS to classify.
+- **Model Loading:** Load the trained model from `artifacts/spam_model.pkl` and the vectorizer from `artifacts/vectorizer.pkl`.
+- **Preprocessing:** On receiving a new message, the backend:
+  - Converts all characters to lowercase
+  - Removes non-alphabetic characters and extra spaces
+  - Tokenizes and removes stopwords
+- **Vectorization:** Uses `ManualVectorizer` to convert the message into a Bag-of-Words vector.
+- **Prediction Logic:**
+  - Calls `model.predict()` to determine the label (`Spam`/`Ham`)
+  - Calls `model.predict_proba()` to calculate the **confidence score**
+  - If the label is `Spam`, the system highlights the keywords that likely triggered the spam classification.
+- **Response:** Returns a JSON object containing the predicted label, confidence score, and keyword list if the message is spam.
 
+### 4.6 Frontend
+- **Technologies:** HTML, CSS, JavaScript.
+- **Layout:** Simple and user-friendly interface:
+  - Input box for users to enter SMS messages
+  - “Predict” button to send requests to the backend
+  - Display area for predicted label and confidence score
+  - Highlight keywords if the message is classified as spam
+- **Behavior (JavaScript):**
+  - Listens for click events on the Predict button
+  - Sends a POST request to `/predict` with JSON data
+  - Receives JSON response and updates the UI according to the label and confidence score
+  - Highlights spam keywords directly in the interface
+- **Styling (CSS):**
+  - Uses colors to differentiate spam (red) and ham (green)
+  - Responsive layout for desktop and mobile
+  - Result boxes with clear borders, padding, and margin for readability
 ---
-
-## 5. Model Evaluation Results
 
 ## 5. Model Evaluation Results
 
@@ -232,8 +261,6 @@ This indicates it is *conservative* in assigning the spam label.
 
 ---
 
-
----
 ## 6. Project Directory Structure
 
 ```bash
@@ -277,6 +304,10 @@ If you wish to retrain the model from scratch using the raw dataset:
 ```bash
 python train.py
 ```
+### 7.4 Run the Web Application
+
+# Start the Flask web application
+python app.py
 
 ### 7.5 Libraries Used
 
@@ -285,5 +316,44 @@ python train.py
 * **scikit-learn** – Machine learning algorithms and metrics
 * **joblib** – Saving and loading models/vectorizers
 * **wordcloud**, **matplotlib** – Keyword visualization and plots
+
+### 7.6 Quick Start Summary
+
+# Optional: create virtual environment
+python -m venv venv
+source venv/bin/activate       # Linux / MacOS
+venv\Scripts\activate          # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Optional: retrain model
+python train.py
+
+# Run web app
+python app.py
+
+### 7.7 Run Demo
+
+# 1. Start the Flask server
+python app.py
+
+# 2. Open your web browser and go to:
+http://127.0.0.1:5000/
+
+# 3. Enter an SMS message in the input box
+
+# 4. Click "Classify" to get the result:
+#    - Label: Spam or Ham
+#    - Confidence score (e.g., 98%)
+#    - Highlighted keywords if predicted as Spam
+
+# 5. Example messages:
+#    - "Congratulations! You have won $1000"  → Spam
+#    - "Hey, are we meeting tomorrow?"        → Ham
+
+# 6. To stop the demo, go back to your terminal and press:
+Ctrl + C
+
 
 
