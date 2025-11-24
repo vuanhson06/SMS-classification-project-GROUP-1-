@@ -11,14 +11,14 @@ The project is conducted as part of the course **Programming for Data Science** 
 
 ## 2. Team Members and Responsibilities
 
-| Member | Student ID | Main Responsibilities | Assigned Files |
-|---------|-------------|------------------------|----------------|
-| **Dương Hữu Tuấn Anh** | 11245832 | Wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py |
-| **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | Backend.py, train_model.py |
-| **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | Frontend |
-| **Nguyễn Thị Dương** | 11245866 | Built the ManualVectorizer and contributed to frontend + dataset processing. | Vectorize.py |
-| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading, preparing slides. | Tokenize.py |
-| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline, testing web. | clean_stop_words.py |
+| Member | Student ID | Main Responsibilities | Assigned Files | Contribution |
+|---------|-------------|------------------------|----------------|--------------|
+| **Dương Hữu Tuấn Anh** | 11245832 | Wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py |  |
+| **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | Backend.py, train_model.py |  |
+| **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | Frontend |  |
+| **Nguyễn Thị Dương** | 11245866 | Built the ManualVectorizer and contributed to frontend + dataset processing. | Vectorize.py |  |
+| **Trần Nguyên Khôi** | 11245889 | Implemented tokenization, helped with raw data reading, preparing slides. | Tokenize.py |  |
+| **Đỗ Quốc Trung** | 11245944 | Project configuration, stopword removal, early-stage cleaning pipeline, testing web. | clean_stop_words.py |  |
 
 ---
 
