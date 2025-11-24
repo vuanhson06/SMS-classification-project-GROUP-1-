@@ -12,7 +12,7 @@ The project is conducted as part of the course **Programming for Data Science** 
 ## 2. Team Members and Responsibilities
 
 | Member | Student ID | Main Responsibilities | Assigned Files | Contribution |
-|---------|-------------|------------------------|----------------|------|
+|---------|-------------|------------------------|----------------|:------------:|
 | **Dương Hữu Tuấn Anh** | 11245832 | Wrote the README.md, described the pipeline, performed **stratified split** and **vocabulary building**. | README.md, split_train_test.py | 17% |
 | **Vũ Anh Sơn** | 11245930 | Backend – Implemented prediction logic, model loading, API handling. | Backend.py, train_model.py | 17% |
 | **Tạ Ngọc Ánh** | 11245844 | Frontend – Developed the **HTML + CSS** UI. | Frontend | 17% |
