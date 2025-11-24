@@ -102,6 +102,7 @@ The project is divided into four main stages:
   - Uses colors to differentiate spam (red) and ham (green)
   - Responsive layout for desktop and mobile
   - Result boxes with clear borders, padding, and margin for readability
+  ---
 
 ## 5. Model Evaluation Results
 
