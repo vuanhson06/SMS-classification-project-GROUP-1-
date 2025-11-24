@@ -47,19 +47,19 @@ The project is divided into four main stages:
 - Split the dataset into training (80%) and testing (20%) sets using **stratified sampling**.  
 - Save the trained vectorizer using `joblib` as `artifacts/vectorizer.pkl`.
 
-### 4.3 Model Training
+### 4.2 Model Training
 - **Models used:** SVM, Multinomial Naive Bayes (MNB), Logistic Regression (LR).
 - Train all models on the training set and evaluate on the testing set using Accuracy, Precision, Recall, and F1-score.
 - Select the best model based on weighted F1-score. **Logistic Regression (LR)** is chosen.
 - Save the best model as `artifacts/spam_model.pkl`.
 
-### 4.4 Web Application Deployment
+### 4.3 Web Application Deployment
 - The web interface is now implemented using **HTML + CSS + JavaScript**.
 - Users can input any SMS message for classification.
 - The system preprocesses, vectorizes, and predicts the message label in real time.
 - The prediction result (Spam/Ham) is displayed in a clear and user-friendly interface.
   
-### 4.5 Backend
+### 4.4 Backend
 - **Framework & Language:** Python + FlaskAPI.
 - **API Endpoints:**
   - `/predict` receives JSON data with the `"message"` field containing a single SMS to classify.
@@ -81,7 +81,7 @@ The project is divided into four main stages:
 - **Response:** Returns a JSON object containing the predicted label, confidence score, and keyword list if the message is spam. For batch prediction, returns a list of results for each message.
 
 
-### 4.6 Frontend
+### 4.5 Frontend
 - **Technologies:** HTML, CSS, JavaScript.
 - **Layout:** Simple and user-friendly interface with two tabs:
   - **Single Prediction Tab:**
