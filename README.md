@@ -114,7 +114,7 @@ Each sample was manually labeled (*Spam* or *Ham*) and compared with the model's
 The table below lists all messages used for evaluation, together with the model output:
 
 | Input Text | Spam or Ham | True/False | Confidence Level |
-|------------|-------------|------------|-----------------|
+|------------|:-------------:|:------------:|:-----------------:|
 | Go until jurong point, crazy.. Available only in bugis n great world la e buffet... Cine there got amore wat... | ham | True | 99.98% |
 | Ok lar... Joking wif u oni... | ham | True | 100% |
 | Free entry in 2 a wkly comp to win FA Cup final tkts 21st May 2005. Text FA to 87121 to receive entry question(std txt rate)T&C's apply 08452810075over18's | spam | True | 99.5% |
@@ -212,7 +212,8 @@ project/
 │   └── processed/                 # Preprocessed train/test sets
 │
 ├── README.md                      # Project documentation
-└── requirements.txt               # Python dependencies
+├── requirements.txt               # Python dependencies
+│
 ├── __pycache__/                   # Auto-generated Python cache files
 │   ├── Backend.cpython-313.pyc
 │   ├── Tokenize.cpython-313.pyc
@@ -278,7 +279,7 @@ python "Model Training/train_model.py"
 
 * STEP 4: RUN THE APPLICATION
 ```bash
-python Backend/Backend.py
+python "Backend/Backend.py"
 ```
 * STEP 5: ACCESS THE APPLICATION
 
