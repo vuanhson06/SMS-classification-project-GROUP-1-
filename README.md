@@ -163,7 +163,7 @@ The table below lists all messages used for evaluation, together with the model 
 ### 5.2 Confusion Matrix Summary
 
 | Metric              | Value |
-|--------------------|-------|
+|:--------------------:|:-------:|
 | Total examples      | 267   |
 | Spam messages       | 150   |
 | Ham messages        | 117   |
@@ -258,7 +258,7 @@ or
 .venv\Scripts\activate           # Windows
 
 - Install required dependencies
-pip install -r "Data Preprocessing/requirements.txt"
+pip install -r "requirements.txt"
 ````
 
 * STEP 2: DATA PREPROCESSING
