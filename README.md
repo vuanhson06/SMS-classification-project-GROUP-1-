@@ -161,21 +161,15 @@ The table below lists all messages used for evaluation, together with the model 
 
 ### 5.2 Confusion Matrix Summary
 
-| Category | Count |
-|----------|-------|
-| **True Positives (Spam → Spam)** | 117 |
-| **True Negatives (Ham → Ham)** | 117 |
-| **False Positives (Ham → Spam)** | 0 |
-| **False Negatives (Spam → Ham)** | 33 |
+| Metric              | Value |
+|--------------------|-------|
+| Total examples      | 267   |
+| Spam messages       | 150   |
+| Ham messages        | 117   |
+| True predictions    | 234   |
+| False predictions   | 33    |
+| Model accuracy      | ~87.6%|
 
-> - Total examples: 267  
-> - Spam messages: 150  
-> - Ham messages: 117  
-> - True predictions: 234  
-> - False predictions: 33  
-> - Model accuracy: ~87.6%  
-
-*Note:* True Positives = correctly predicted spam, True Negatives = correctly predicted ham, False Positives = ham misclassified as spam, False Negatives = spam misclassified as ham.  
 *Additional note:* We tried multiple models and various parameter settings, and this is the best result we achieved.
 
 ### 5.4 Confidence-Level Behavior
@@ -218,9 +212,31 @@ project/
 │   ├── raw/                       # Original dataset
 │   └── processed/                 # Preprocessed train/test sets
 │
-├── Project Details/               # Extra project info
-    ├── README.md                      # Project documentation
-    └── requirements.txt               # Python dependencies
+├── README.md                      # Project documentation
+└── requirements.txt               # Python dependencies
+├── __pycache__/                   # Auto-generated Python cache files
+│   ├── Backend.cpython-313.pyc
+│   ├── Tokenize.cpython-313.pyc
+│   ├── Vectorize.cpython-313.pyc
+│   ├── csv.cpython-313.pyc
+│   └── split_train_test.cpython-313.pyc
+│
+├── artifacts/                     # Trained models and vectorizer
+│   ├── lr_model.pkl               # Logistic Regression model
+│   ├── nb_model.pkl               # Naive Bayes model
+│   ├── spam_model.pkl             # Final spam classification model
+│   ├── svm_model.pkl              # Support Vector Machine model
+│   ├── vectorizer.pkl             # Trained vectorizer
+│   └── vocab.txt                  # Vocabulary list
+│
+├── data/                          # Input datasets
+│   ├── raw/                       # Original dataset
+│   │   └── spam.csv               # Raw spam email data
+│   └── processed/                 # Preprocessed train/test sets
+│
+└── reports/                       # Model evaluation reports
+    ├── best_model_summary.json    # Summary of best-performing model
+    └── metrics.csv                # Evaluation metrics
 
 ```
 
@@ -271,10 +287,3 @@ python Backend/Backend.py
 ```bash
 http://localhost:8000
 ```
-### 7.5 Libraries Used
-
-* **pandas** – Data manipulation and CSV processing
-* **numpy** – Numerical computation
-* **scikit-learn** – Machine learning algorithms and metrics
-* **joblib** – Saving and loading models/vectorizers
-* **wordcloud**, **matplotlib** – Keyword visualization and plots
