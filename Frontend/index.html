@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS for FAQ section */
         .faq-container {
             margin-top: 20px;
             background: rgba(255, 255, 255, 0.05);
@@ -99,7 +98,6 @@
             background: rgba(0, 0, 0, 0.2);
         }
         
-        /* Enhanced result display */
         .result-confidence {
             font-size: 1.1rem;
             font-weight: 600;
@@ -156,7 +154,6 @@
             border: 1px solid rgba(239, 68, 68, 0.3);
         }
         
-        /* Batch Analysis Results Styles */
         .batch-results-container {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
@@ -341,7 +338,6 @@
             border-bottom: 1px solid rgba(74, 222, 128, 0.1);
         }
         
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             .faq-container {
                 padding: 15px;
@@ -398,7 +394,6 @@
             <img src="crewmate.png" alt="Crewmate Among Us" class="crewmate-img">
 
             <div class="form-container">
-                <!-- Single Prediction Tab -->
                 <div id="single-tab" class="tab-content active">
                     <form id="single-form">
                         <div class="input-container">
@@ -417,9 +412,7 @@
                     </div>
                 </div>
                 <script>
-    // ... các hàm switchTab, switchSpamTab, toggleFAQ đã có ...
 
-    // Single Prediction Form Handler - ĐÃ SỬA MÀU CONFIDENCE
     document.getElementById('single-form').addEventListener('submit', async function(e) {
         e.preventDefault();
         
@@ -455,35 +448,28 @@
             
             const data = await response.json();
             
-            // Get confidence level from API response
             const confidence = data.confidence || 0;
             
-            // Determine confidence class based on percentage AND message type - ĐÃ SỬA
             let confidenceClass = 'confidence-medium';
             if (data.label === 'spam') {
-                // For spam messages - use red/orange colors
                 if (confidence >= 80) confidenceClass = 'confidence-high';
                 else if (confidence >= 60) confidenceClass = 'confidence-medium';
                 else confidenceClass = 'confidence-low';
             } else {
-                // For ham messages - use green colors - ĐÃ SỬA
                 if (confidence >= 80) confidenceClass = 'confidence-high-ham';
                 else if (confidence >= 60) confidenceClass = 'confidence-medium-ham';
                 else confidenceClass = 'confidence-low-ham';
             }
             
-            // Display results based on prediction
             if (data.label === 'spam') {
                 showResult('🚨 SPAM DETECTED!', 'spam');
                 
-                // Display confidence with dynamic styling
                 confidenceDisplay.innerHTML = `
                     <div class="result-confidence ${confidenceClass}">
                         Confidence: ${confidence}%
                     </div>
                 `;
                 
-                // Display spam keywords if available
                 if (data.top_words && data.top_words.length > 0) {
                     const keywordsHTML = data.top_words.map(word => 
                         `<span class="keyword-tag">${word[0]}</span>`
@@ -502,7 +488,6 @@
             } else {
                 showResult('SAFE MESSAGE', 'ham');
                 
-                // Display confidence with dynamic styling - SẼ HIỂN THỊ MÀU XANH
                 confidenceDisplay.innerHTML = `
                     <div class="result-confidence ${confidenceClass}">
                         Confidence: ${confidence}%
@@ -518,16 +503,13 @@
         }
     });
 
-    // Show result function
     function showResult(message, type) {
         const resultContainer = document.getElementById('resultContainer');
         const resultText = document.getElementById('resultText');
         
-        // Reset classes
         resultContainer.className = 'result-container';
         resultText.className = '';
         
-        // Apply type-specific styling
         switch (type) {
             case 'spam':
                 resultContainer.classList.add('result-spam');
@@ -555,10 +537,8 @@
         resultContainer.style.display = 'block';
     }
 
-    // ... phần còn lại của code batch upload ...
 </script>
 
-                <!-- Batch Upload Tab -->
                 <div id="batch-tab" class="tab-content">
                     <div class="batch-upload">
                         <h3>Upload CSV File</h3>
@@ -579,7 +559,6 @@
                     </div>
                 </div>
 
-                <!-- Other Info Tab - FAQ ONLY -->
                 <div id="info-tab" class="tab-content">
                     <div class="faq-container">
                         <div class="faq-header">
@@ -687,7 +666,6 @@
                 </div>
             </div>
 
-            <!-- Project Introduction + Spam Info tabs -->
             <div class="project-intro">
                 <div class="intro-header">
                     <h2>🚀 About Among SMS</h2>
@@ -759,7 +737,6 @@
                         </div>
                     </div>
 
-                    <!-- SPAM INFO SECTIONS - TABBED -->
                     <div class="spam-info-tabs">
                         <div class="spam-tabs-nav">
                             <button class="spam-tab-btn active" onclick="switchSpamTab('keywords')">
@@ -772,7 +749,6 @@
                         
                         <div class="spam-tabs-content">
                             
-        <!-- Keywords Tab -->
         <div id="keywords-tab" class="spam-tab-content active">
             <div class="keywords-list-enhanced">
                 <div class="keyword-item-enhanced">
@@ -820,7 +796,6 @@
             </div>
         </div>
         
-        <!-- Tips Tab -->
         <div id="tips-tab" class="spam-tab-content">
             <div class="tips-list-simple">
                 <div class="tip-item-simple">
@@ -860,41 +835,32 @@
 
     <script>
         function switchTab(tabName) {
-            // Hide all tab content
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Remove active class from all buttons
             document.querySelectorAll('nav a').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Show selected tab
             document.getElementById(`${tabName}-tab`).classList.add('active');
             
-            // Add active class to clicked button
             event.target.classList.add('active');
             
-            // Hide intro section on tabs other than single
             document.querySelector('.project-intro').style.display = tabName === 'single' ? 'block' : 'none';
         }
         
         function switchSpamTab(tabName) {
-            // Hide all tab content
             document.querySelectorAll('.spam-tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
             
-            // Remove active class from all buttons
             document.querySelectorAll('.spam-tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Show selected tab
             document.getElementById(`${tabName}-tab`).classList.add('active');
             
-            // Add active class to clicked button
             event.target.classList.add('active');
         }
         
@@ -902,7 +868,6 @@
             const answer = element.nextElementSibling;
             const isActive = element.classList.contains('active');
             
-            // Close all FAQs first
             document.querySelectorAll('.faq-question').forEach(q => {
                 q.classList.remove('active');
             });
@@ -910,16 +875,13 @@
                 a.classList.remove('active');
             });
             
-            // Open clicked FAQ if not active
             if (!isActive) {
                 element.classList.add('active');
                 answer.classList.add('active');
             }
         }
 
-        // Open first FAQ when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Auto-open first FAQ when entering Other Info tab
             const firstFAQ = document.querySelector('.faq-question');
             if (firstFAQ && window.location.hash !== '#single' && window.location.hash !== '#batch') {
                 firstFAQ.classList.add('active');
@@ -927,7 +889,6 @@
             }
         });
         
-// Batch Upload Form Handler - GỌI API THẬT
 document.getElementById('batch-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
@@ -953,7 +914,6 @@ document.getElementById('batch-form').addEventListener('submit', async function(
         
         console.log('📤 Sending batch request to: http://localhost:8000/batch-predict-json');
         
-        // GỌI API THẬT
         const response = await fetch('http://localhost:8000/batch-predict-json', {
             method: 'POST',
             body: formData
@@ -991,11 +951,9 @@ document.getElementById('batch-form').addEventListener('submit', async function(
     }
 });
         
-        // Display batch results in the format shown in the image
         function displayBatchResults(data) {
             const batchResult = document.getElementById('batchResult');
             
-            // Create HTML for the batch results
             let resultsHTML = `
                 <div class="batch-results-container">
                     <div class="batch-results-header">
@@ -1035,7 +993,6 @@ document.getElementById('batch-form').addEventListener('submit', async function(
                                 <tbody>
             `;
             
-            // Add spam messages
             const spamResults = data.results.filter(item => item.is_spam);
             if (spamResults.length > 0) {
                 spamResults.forEach(item => {
@@ -1074,7 +1031,6 @@ document.getElementById('batch-form').addEventListener('submit', async function(
                                 <tbody>
             `;
             
-            // Add legitimate messages
             const hamResults = data.results.filter(item => !item.is_spam);
             if (hamResults.length > 0) {
                 hamResults.forEach(item => {
@@ -1105,7 +1061,6 @@ document.getElementById('batch-form').addEventListener('submit', async function(
             batchResult.innerHTML = resultsHTML;
         }
         
-        // File input change handler
         document.getElementById('csv-file').addEventListener('change', function(e) {
             const fileLabel = document.querySelector('.file-label');
             const fileText = document.querySelector('.file-text');
