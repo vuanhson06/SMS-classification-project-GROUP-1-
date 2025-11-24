@@ -4,7 +4,15 @@ import re
 import pandas as pd  # Dùng pandas để đọc và xử lý dữ liệu dạng bảng (CSV, Excel, ...)
 
 # Nếu muốn loại bỏ stopwords, có thể load hoặc định nghĩa sẵn
-STOPWORDS = set()  
+STOPWORDS = {
+    "a","an","the","is","are","am","was","were","be","been","being","i","you","he","she","it","we","they","me","him","her","us","them",
+    "this","that","these","those","there","here","of","to","in","on","for","from","with","by","at","as","about","into","over","after",
+    "before","between","and","or","but","if","then","so","because","while","than","though","although","not","no","do","does","did","doing",
+    "done","dont","didnt","doesnt","isnt","arent","wasnt","werent","cant","cannot","my","your","his","her","its","our","their",
+    "have","has","had","having","will","would","shall","should","can","could","may","might","must",
+    # thêm một số mảnh contraction phổ biến sau khi bỏ ký tự
+    "im","ive","youre","hes","shes","weve","theyre","ill","youll","dont","cant","wont","didnt","couldnt","shouldnt","wouldnt","lets"
+} 
 
 def keep_letters_and_spaces(text: str) -> str:
     """

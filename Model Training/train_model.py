@@ -7,6 +7,37 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.svm import LinearSVC
 from scipy import sparse
+from sklearn.base import BaseEstimator, TransformerMixin
+
+class ManualVectorizer(BaseEstimator, TransformerMixin):
+    def __init__(self, vocab=None):
+        self.vocab = vocab or {} # vocab: danh sách các từ được dùng để huấn luyện mô hình
+        self.vocab_index = {word: idx for idx, word in enumerate(self.vocab)} # Tạo chỉ mục (index) cho từng từ trong vocab
+    
+    def fit(self, X, y=None):# Hàm fit không làm gì vì vocab đã có sẵn (fit đã được làm trong bước tiền xử lý)
+        return self
+    
+    def transform(self, X):
+        if isinstance(X, str): # Nếu chỉ truyền vào 1 chuỗi, đưa vào danh sách
+            X = [X]
+        
+        results = []
+        for text in X:
+            features = np.zeros(len(self.vocab))# Tạo vector độ dài = số từ trong vocab, khởi tạo bằng 0
+            words = text.lower().split()# tách câu thành danh sách từ (ở đây tách đơn giản theo khoảng trắng, lowercase).
+            for word in words:
+                if word in self.vocab_index: # Nếu từ nằm trong vocab thì tăng tần suất
+                    features[self.vocab_index[word]] += 1
+            results.append(features)
+        
+        return np.array(results)
+    
+    def fit_transform(self, X, y=None):# type: ignore  # không cần fit nữa vì đã tự build Vocab 
+        return self.transform(X)# hàm biến đổi dữ liệu đầu vào (văn bản) thành dạng số học mà mô hình máy học có thể hiểu được.
+
+    @property
+    def vocabulary_(self):
+        return self.vocab_index# Trả về từ điển vocab_index (phù hợp với chuẩn sklearn)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 
