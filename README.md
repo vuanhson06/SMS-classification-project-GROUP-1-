@@ -233,9 +233,9 @@ project/
 
 ### 7.2 Install Dependencies
 * STEP 1: SET UP ENVIRONMENT
-  
+```bash 
 cd Project-Py
-
+```
  - Activate virtual environment (if available)
 ```bash
 source .venv/bin/activate        # Mac / Linux
