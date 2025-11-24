@@ -287,3 +287,4 @@ python "Backend/Backend.py"
 ```bash
 http://localhost:8000
 ```
+- *NOTE: If fail, use live server of visual code then open the live server of index.html
