@@ -41,3 +41,6 @@ def keep_letters_and_spaces(s: str) -> str:
 
     return ''.join(out) # Ghép các kí tự lại thành chuỗi hoàn chỉnh 
 
+
+
+
