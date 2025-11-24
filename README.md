@@ -206,8 +206,6 @@ project/
 ├── Model Training/
 │   └── train_model.py             # Script to train ML model
 │
-├── artifacts/                     # Saved models and vectorizers
-│
 ├── data/
 │   ├── raw/                       # Original dataset
 │   └── processed/                 # Preprocessed train/test sets
